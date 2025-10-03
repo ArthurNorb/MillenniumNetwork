@@ -1,61 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Millennium Network - Plataforma de Atletas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[cite_start]Este é o repositório oficial para o desenvolvimento da **Millennium Network**, uma plataforma de assinatura digital para a mentoria e desenvolvimento de atletas de futebol[cite: 236].
 
-## About Laravel
+## Visão Geral
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[cite_start]A Millennium Network será uma plataforma de assinatura (R$49/mês) para atletas de futebol que buscam evoluir rumo ao profissionalismo[cite: 1, 7]. [cite_start]O objetivo é aumentar a exposição dos atletas a oportunidades reais e criar uma rotina de aprendizagem de alto nível através de lives e mentorias[cite: 14, 15].
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Status Atual
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O projeto está em fase inicial de desenvolvimento. [cite_start]O foco atual é a construção de um **Produto Mínimo Viável (MVP)** robusto e escalável, com um prazo de entrega estimado em 4 meses[cite: 237]. O primeiro entregável será um protótipo funcional ("Fatia Vertical") focado no fluxo de descoberta de atletas por recrutadores.
 
-## Learning Laravel
+## Módulos Principais (Escopo do MVP)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* [cite_start]**Gestão de Perfis e Autenticação:** Cadastro, login e perfis distintos para Atletas, Mentores e Recrutadores[cite: 242, 248].
+* [cite_start]**Sistema de Assinatura:** Integração com gateway de pagamento (Stripe/Mercado Pago) para a recorrência de R$ 49/mês[cite: 251].
+* [cite_start]**Lives e Biblioteca de Conteúdo:** Agenda de eventos, transmissão ao vivo e armazenamento automático de gravações[cite: 255, 256, 257].
+* [cite_start]**Marketplace de Mentorias 1:1:** Sistema de agendamento, pagamento com escrow e comissionamento da plataforma[cite: 258, 260, 261].
+* [cite_start]**Ferramenta de Busca para Recrutadores:** Página de busca com filtros avançados (posição, idade, passaporte, etc.)[cite: 264].
+* [cite_start]**Painel Administrativo:** Dashboard para gestão de usuários, conteúdo e finanças[cite: 267].
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Stack de Tecnologia
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+[cite_start]A stack foi selecionada para garantir produtividade, performance e um desenvolvimento moderno[cite: 269].
 
-## Laravel Sponsors
+* [cite_start]**Backend:** Laravel 11 [cite: 270]
+* [cite_start]**Autenticação:** Laravel Jetstream [cite: 272]
+* [cite_start]**Frontend Interativo:** Livewire 3 [cite: 273]
+* [cite_start]**JavaScript:** Alpine.js [cite: 274]
+* [cite_start]**Estilização:** Tailwind CSS [cite: 275]
+* [cite_start]**Painel Admin:** Filament 3 [cite: 276]
+* [cite_start]**Banco de Dados:** MariaDB [cite: 277]
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Configuração do Ambiente de Desenvolvimento
 
-### Premium Partners
+Siga os passos abaixo para rodar o projeto localmente.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Pré-requisitos
 
-## Contributing
+* Ambiente WSL (Ubuntu) no Windows
+* PHP 8.2+
+* Composer
+* Node.js & NPM
+* MariaDB
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Passos para Instalação
 
-## Code of Conduct
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/SEU-USUARIO/millennium-network.git](https://github.com/SEU-USUARIO/millennium-network.git)
+    cd millennium-network
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2.  **Instale as dependências do Composer:**
+    ```bash
+    composer install
+    ```
 
-## Security Vulnerabilities
+3.  **Instale as dependências do NPM:**
+    ```bash
+    npm install
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.  **Configure o arquivo de ambiente:**
+    ```bash
+    cp .env.example .env
+    ```
 
-## License
+5.  **Gere a chave da aplicação:**
+    ```bash
+    php artisan key:generate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6.  **Configure o `.env`:**
+    Abra o arquivo `.env` e adicione as credenciais do seu banco de dados local.
+
+7.  **Execute as migrations do banco de dados:**
+    ```bash
+    php artisan migrate
+    ```
+
+8.  **Compile os assets de frontend:**
+    ```bash
+    npm run dev
+    ```
+
+9.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    php artisan serve
+    ```
+
+A aplicação estará disponível em `http://127.0.0.1:8000`. O painel administrativo estará em `/admin`.
+
+## Próximos Passos
+
+O foco de desenvolvimento agora se volta para a implementação das primeiras funcionalidades do protótipo:
+1.  Estrutura de dados e models para `AthleteProfile`.
+2.  Criação da interface de visualização do Perfil do Atleta.
+3.  Implementação da busca avançada para Recrutadores com Livewire.
