@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="w-full max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
         <div
-            class="grid md:grid-cols-2 gap-8 bg-zinc-900/50 border border-zinc-800 shadow-2xl rounded-lg overflow-hidden">
+            class="grid md:grid-cols-2 gap-8 bg-zinc-900/50 border border-zinc-800 shadow-2xl overflow-hidden">
 
             <div class="p-8 flex flex-col justify-center items-center md:items-start text-center md:text-left">
                 <a href="/" class="mb-6">

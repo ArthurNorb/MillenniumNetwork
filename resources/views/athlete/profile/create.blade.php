@@ -11,7 +11,7 @@
                 <p class="text-gray-400 mt-2">Preencha os campos abaixo para que os recrutadores possam te encontrar.</p>
             </div>
 
-            <div class="bg-zinc-900/50 border border-zinc-800 shadow-xl rounded-lg p-8">
+            <div class="bg-zinc-900/50 border border-zinc-800 shadow-xl p-8">
                 <x-validation-errors class="mb-4" />
 
                 <form action="{{ route('athlete.profile.store') }}" method="POST">
