@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill=""/> <text x="50%" y="50%" dominant-baseline="central" text-anchor="end" 
+        font-family="Poppins, sans-serif" font-size="48" font-weight="bold" 
+        fill="url(#faviconGradient)" transform="skewX(-10)" style="transform-origin: center;">M</text>
+
+  <text x="50%" y="50%" dominant-baseline="central" text-anchor="start" 
+        font-family="Poppins, sans-serif" font-size="48" font-weight="bold" 
+        fill="#4ade80" transform="skewX(-10)" style="transform-origin: center;">N</text>
+
+  <defs>
+    <linearGradient id="faviconGradient" x1="0" y1="20" x2="64" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D91136"></stop>
+      <stop offset="0.33" stop-color="#F2274C"></stop>
+      <stop offset="0.66" stop-color="#BF0426"></stop>
+    </linearGradient>
+  </defs>
+</svg>
