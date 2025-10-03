@@ -1,4 +1,4 @@
-<footer class="w-full p-6 md:p-8 mt-12 border-t border-zinc-800">
+<footer class="w-full p-6 md:p-8 mt-12 border-t border-zinc-800 bg-black">
     <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
         
         <div class="text-center sm:text-left">
