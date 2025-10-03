@@ -8,7 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/atletas/{user}', [AthleteProfileController::class, 'show'])->name('athletes.show');
+Route::get('/athlete/{user}', [AthleteProfileController::class, 'show'])->name('athletes.show');
+Route::get('/athlete/profile/create', [AthleteProfileController::class, 'create'])->name('athlete.profile.create');
+Route::post('/athlete/profile', [AthleteProfileController::class, 'store'])->name('athlete.profile.store');
 
 Route::middleware([
     'auth:sanctum',
