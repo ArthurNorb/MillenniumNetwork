@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AthleteProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,10 @@ class AthleteProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostra o formulário para criar um novo perfil.
      */
     public function create()
     {
-        // Impede que um atleta com perfil já criado acesse esta página novamente
         if (Auth::user()->athleteProfile) {
             return redirect()->route('dashboard');
         }
@@ -30,22 +30,37 @@ class AthleteProfileController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Salva o novo perfil no banco de dados.
      */
     public function store(Request $request)
     {
+        // 1. Validar os dados que vêm do formulário
         $validated = $request->validate([
             'position' => ['required', 'string', 'max:255'],
+            'dominant_foot' => ['required', 'string', Rule::in(['Direito', 'Esquerdo', 'Ambidestro'])],
             'height_cm' => ['nullable', 'integer', 'min:100', 'max:250'],
             'weight_kg' => ['nullable', 'integer', 'min:30', 'max:200'],
-            'dominant_foot' => ['required', 'string', Rule::in(['Direito', 'Esquerdo', 'Ambidestro'])],
             'current_club' => ['nullable', 'string', 'max:255'],
             'bio' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        Auth::user()->athleteProfile()->create($validated);
+        // 2. Criar uma nova instância do perfil do atleta
+        $profile = new AthleteProfile();
 
-        return redirect()->route('dashboard')->with('status', 'Perfil criado com sucesso!');
+        // 3. Atribuir cada valor individualmente
+        $profile->user_id = Auth::id(); // Associa o perfil ao usuário logado
+        $profile->position = $validated['position'];
+        $profile->dominant_foot = $validated['dominant_foot'];
+        $profile->height_cm = $validated['height_cm'] ?? null;
+        $profile->weight_kg = $validated['weight_kg'] ?? null;
+        $profile->current_club = $validated['current_club'] ?? null;
+        $profile->bio = $validated['bio'] ?? null;
+
+        // 4. Salvar o novo perfil no banco de dados
+        $profile->save();
+
+        // 5. Redirecionar para o dashboard com uma mensagem de sucesso
+        return redirect('/')->with('status', 'Perfil criado com sucesso! Bem-vindo à Millennium Network.');
     }
 
     /**

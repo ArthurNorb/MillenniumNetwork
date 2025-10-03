@@ -62,4 +62,6 @@
 
 </body>
 
+<x-footer />
+
 </html>
