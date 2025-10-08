@@ -8,7 +8,7 @@
 
         <div class="absolute z-0 top-0 left-0 w-full h-full overflow-hidden">
             <iframe
-                class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 scale-[2.5] opacity-20"
+                class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 scale-[2.5] opacity-40"
                 src="https://www.youtube.com/embed/L3374C3OyrY?&autoplay=1&mute=1&loop=1&playlist=L3374C3OyrY&controls=0&showinfo=0&autohide=1&modestbranding=1"
                 title="YouTube video player" frameborder="0">
             </iframe>
