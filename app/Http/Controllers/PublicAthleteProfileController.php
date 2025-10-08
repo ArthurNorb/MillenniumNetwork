@@ -31,8 +31,7 @@ class PublicAthleteProfileController extends Controller
             abort(404);
         }
 
-        $athlete->load('athleteProfile');
-
+        $athlete->load('athleteProfile', 'videos');
         return view('pages.athlete.show', compact('athlete'));
     }
 }

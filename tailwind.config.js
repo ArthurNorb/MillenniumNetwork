@@ -23,5 +23,10 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms,
+        typography,
+        // ADICIONE A LINHA ABAIXO
+        require('@tailwindcss/aspect-ratio'),
+    ],
 };
