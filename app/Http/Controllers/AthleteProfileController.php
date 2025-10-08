@@ -69,7 +69,7 @@ class AthleteProfileController extends Controller
     public function show(User $user)
     {
         $user->load('athleteProfile');
-        return view('pages.athlete.show', ['user' => $user]);
+        return view('athlete.show', ['user' => $user]);
     }
 
     /**

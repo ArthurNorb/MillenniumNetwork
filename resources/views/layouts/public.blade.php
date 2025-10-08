@@ -31,16 +31,16 @@
                 </a>
 
                 <div class="flex items-center space-x-6">
-                    {{-- Links que aparecem para TODOS --}}
+                    {{-- LINK "BUSCAR ATLETAS" ATUALIZADO --}}
                     <a class="hidden sm:block text-gray-300 hover:text-green-400 transition-colors font-semibold"
-                        href="#">BUSCAR ATLETAS</a>
+                        href="{{ route('athlete.index') }}">BUSCAR ATLETAS</a>
 
-                    {{-- Lógica de Autenticação --}}
                     @auth
                         {{-- Se o usuário ESTIVER LOGADO --}}
-                        <a href="{{ route('dashboard') }}"
+                        {{-- LINK "PAINEL" ATUALIZADO PARA "PERFIL" E DIRECIONADO PARA O PERFIL PÚBLICO DO PRÓPRIO USUÁRIO --}}
+                        <a href="{{ route('athlete.profile.show', ['user' => Auth::user()]) }}"
                             class="bg-green-500 text-black font-bold py-2 px-6 flex items-center space-x-2 hover:bg-green-400 transition-transform hover:scale-105">
-                            <span>PAINEL</span>
+                            <span>PERFIL</span>
                         </a>
 
                         {{-- Formulário de Logout --}}
@@ -59,7 +59,7 @@
                         <a href="{{ route('register') }}"
                             class="bg-green-500 text-black font-bold py-2 px-6 flex items-center space-x-2 hover:bg-green-400 transition-transform hover:scale-105">
                             <span>CRIE SUA CONTA</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
