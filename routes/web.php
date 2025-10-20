@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AthleteProfileController;
 use App\Http\Controllers\PublicAthleteProfileController;
+use App\Livewire\SearchAthletesPage;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 

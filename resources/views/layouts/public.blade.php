@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> {{-- Use lang helper --}}
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Millennium Network')</title>
+    <title>@yield('title', config('app.name', 'Millennium Network'))</title> {{-- Use config() helper --}}
 
-    <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml"> {{-- Use favicon.svg --}}
 
+    {{-- Tipografia Poppins --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"> {{-- Added 500 weight --}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -20,63 +23,49 @@
     </style>
 </head>
 
-<body class="bg-zinc-950 text-gray-200 antialiased">
+{{-- ADICIONE x-data AQUI --}}
 
-    <nav class="bg-black/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
+<body x-data="{ searchOpen: false }" class="bg-zinc-950 text-gray-200 antialiased">
 
-                <a href="/" title="Millennium Network">
-                    <img src="{{ asset('images/logo.svg') }}" class="h-12" alt="Millennium Network Logo">
-                </a>
+    {{-- Navbar Dinâmica --}}
+    <x-public-nav />
 
-                <div class="flex items-center space-x-6">
-                    {{-- LINK "BUSCAR ATLETAS" ATUALIZADO --}}
-                    <a class="hidden sm:block text-gray-300 hover:text-green-400 transition-colors font-semibold"
-                        href="{{ route('athlete.index') }}">BUSCAR ATLETAS</a>
-
-                    @auth
-                        {{-- Se o usuário ESTIVER LOGADO --}}
-                        {{-- LINK "PAINEL" ATUALIZADO PARA "PERFIL" E DIRECIONADO PARA O PERFIL PÚBLICO DO PRÓPRIO USUÁRIO --}}
-                        <a href="{{ route('athlete.profile.show', ['user' => Auth::user()]) }}"
-                            class="bg-green-500 text-black font-bold py-2 px-6 flex items-center space-x-2 hover:bg-green-400 transition-transform hover:scale-105">
-                            <span>PERFIL</span>
-                        </a>
-
-                        {{-- Formulário de Logout --}}
-                        <form method="POST" action="{{ route('logout') }}" class="hidden sm:block">
-                            @csrf
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                                class="text-gray-300 hover:text-white transition-colors font-semibold">
-                                SAIR
-                            </a>
-                        </form>
-                    @else
-                        {{-- Se o usuário for um VISITANTE --}}
-                        <a class="hidden sm:block text-gray-300 hover:text-white transition-colors font-semibold"
-                            href="{{ route('login') }}">LOGIN</a>
-
-                        <a href="{{ route('register') }}"
-                            class="bg-green-500 text-black font-bold py-2 px-6 flex items-center space-x-2 hover:bg-green-400 transition-transform hover:scale-105">
-                            <span>CRIE SUA CONTA</span>
-                            <svg xmlns="http://www.w.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    @endauth
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    {{-- Conteúdo da Página --}}
     <main>
         @yield('content')
     </main>
 
-</body>
+    {{-- Footer --}}
+    <x-footer />
 
-<x-footer />
+    {{-- ===== MODAL DE BUSCA ===== --}}
+    <div x-show="searchOpen" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="searchOpen = false"
+        {{-- Fecha ao clicar fora --}} @keydown.escape.window="searchOpen = false" {{-- Fecha ao pressionar Esc --}}
+        class="fixed inset-0 bg-black/80 z-[100] flex items-start justify-center p-4 pt-16 sm:pt-24"
+        style="display: none;"> {{-- Começa escondido --}}
+
+        {{-- Container do Modal --}}
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-4xl max-h-[80vh] overflow-y-auto p-6 relative">
+            {{-- Botão de Fechar --}}
+            <button @click="searchOpen = false" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <h2 class="text-2xl font-bold text-white mb-6">Buscar Atletas</h2>
+
+            {{-- Área onde o componente Livewire será carregado --}}
+            <div id="search-modal-content">
+                {{-- O Livewire será injetado aqui dinamicamente --}}
+                @livewire('search-modal', [], key('search-modal'))
+            </div>
+        </div>
+    </div>
+
+</body>
 
 </html>
