@@ -8,20 +8,22 @@
         <div class="max-w-4xl mx-auto">
 
             {{-- CABEÇALHO DO PERFIL --}}
-            <header class="bg-zinc-900 border border-zinc-800 shadow-xl p-8 flex flex-col md:flex-row items-center gap-8">
+            <header
+                class="bg-zinc-900 border border-zinc-800 shadow-xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 {{-- FOTO DE PERFIL --}}
                 <div class="flex-shrink-0">
-                    <img class="h-40 w-40 object-cover border-4 border-zinc-700" src="{{ $athlete->profile_photo_url }}"
-                        alt="{{ $athlete->name }}">
+                    <img class="h-32 w-32 md:h-40 md:w-40 object-cover border-4 border-zinc-700"
+                        src="{{ $athlete->profile_photo_url }}" alt="{{ $athlete->name }}">
                 </div>
 
                 {{-- INFORMAÇÕES PRINCIPAIS --}}
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl font-bold text-white">{{ $athlete->name }}</h1>
-                    <p class="text-xl text-green-400 font-semibold mt-1">{{ $athlete->athleteProfile->position }}</p>
+                <div class="text-center md:text-left flex-grow">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-white">{{ $athlete->name }}</h1>
+                    <p class="text-lg sm:text-xl text-green-400 font-semibold mt-1">{{ $athlete->athleteProfile->position }}
+                    </p>
 
                     <div
-                        class="flex flex-wrap justify-center md:justify-start items-center gap-x-6 gap-y-2 text-gray-300 mt-4">
+                        class="flex flex-wrap justify-center md:justify-start items-center gap-x-4 sm:gap-x-6 gap-y-2 text-sm sm:text-base text-gray-300 mt-4 border-t border-zinc-800 pt-4">
                         <span>Altura: <span class="font-bold">{{ $athlete->athleteProfile->height_cm ?? 'N/A' }}
                                 cm</span></span>
                         <span>Peso: <span class="font-bold">{{ $athlete->athleteProfile->weight_kg ?? 'N/A' }}
@@ -37,20 +39,21 @@
             {{-- CORPO DO PERFIL --}}
             <main class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
 
+                {{-- Coluna Principal (Bio, Vídeos, etc.) --}}
                 <div class="lg:col-span-2 space-y-8">
 
                     {{-- SEÇÃO DE BIOGRAFIA --}}
-                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">Sobre Mim</h2>
+                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-6 sm:p-8">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">Sobre Mim</h2>
                         <p class="text-gray-300 whitespace-pre-line leading-relaxed">
                             {{ $athlete->athleteProfile->bio ?? 'Nenhuma biografia disponível.' }}
                         </p>
-                        {{-- ... (outros detalhes) ... --}}
+                        {{-- Removi os "Detalhes Adicionais" daqui para simplificar --}}
                     </section>
 
                     {{-- SEÇÃO DE VÍDEOS --}}
-                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">Vídeos em Destaque</h2>
+                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-6 sm:p-8">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">Vídeos em Destaque</h2>
 
                         @if ($athlete->videos->count() > 0)
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -72,15 +75,15 @@
                                                 class="w-full h-auto border-2 border-transparent group-hover:border-green-500 transition-all">
                                             <div
                                                 class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <svg class="h-12 w-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <svg class="h-10 w-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path
                                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z">
                                                     </path>
                                                 </svg>
                                             </div>
                                         </div>
-                                        <h4 class="text-sm font-semibold text-gray-200 mt-2 truncate">{{ $video->title }}
-                                        </h4>
+                                        <h4 class="text-xs sm:text-sm font-semibold text-gray-200 mt-2 truncate">
+                                            {{ $video->title }}</h4>
                                     </div>
                                 @endforeach
                             </div>
@@ -92,18 +95,33 @@
 
                 {{-- Coluna Lateral --}}
                 <aside class="space-y-8">
-                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-8">
-                        <h2 class="text-2xl font-bold text-white mb-4">Atualizações</h2>
-                        <p class="text-gray-500">Em breve...</p>
+                    {{-- SEÇÃO DE ATUALIZAÇÕES (ESTILO REFINADO) --}}
+                    <section class="bg-zinc-900 border border-zinc-800 shadow-xl p-6 sm:p-8">
+                        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">Atualizações</h2>
+
+                        @if ($athlete->athleteUpdates->count() > 0)
+                            <div class="space-y-6">
+                                @foreach ($athlete->athleteUpdates as $update)
+                                    <div class="border-b border-zinc-800 pb-4 last:border-b-0 last:pb-0">
+                                        <p class="text-sm text-gray-300 mb-1">{{ $update->content }}</p>
+                                        <time datetime="{{ $update->created_at->toIso8601String() }}"
+                                            class="text-xs text-gray-500">
+                                            {{ $update->created_at->diffForHumans() }}
+                                        </time>
+                                    </div>
+                                @endforeach
+                                </ul>
+                            @else
+                                <p class="text-gray-500">Nenhuma atualização postada ainda.</p>
+                        @endif
                     </section>
                 </aside>
             </main>
         </div>
 
-        {{-- MODAL DO VÍDEO (COM A CORREÇÃO) --}}
+        {{-- MODAL DO VÍDEO --}}
         <div x-show="openModal" x-transition @click.away="openModal = false; videoUrl = ''"
             class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" style="display: none;">
-            {{-- <--- A CORREÇÃO ESTÁ AQUI --}}
 
             <div class="relative w-full max-w-4xl">
                 <div class="aspect-w-16 aspect-h-9">

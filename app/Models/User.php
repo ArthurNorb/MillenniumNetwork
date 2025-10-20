@@ -83,4 +83,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Video::class);
     }
+
+    /**
+     * Get the updates for the user.
+     */
+    public function athleteUpdates(): HasMany // <-- MÉTODO NOVO ADICIONADO
+    {
+        return $this->hasMany(AthleteUpdate::class);
+    }
 }

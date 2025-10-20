@@ -22,7 +22,7 @@
 
 <body class="bg-zinc-950 text-gray-200 antialiased">
 
-    <nav class="bg-black/80 backdrop-blur-md sticky top-0 z-50 shadow-lg">
+    <nav class="bg-black/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
 

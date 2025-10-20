@@ -30,6 +30,14 @@ class PublicAthleteProfileController extends Controller
         if ($athlete->role !== 'athlete' || !$athlete->athleteProfile) {
             abort(404);
         }
+        
+        $athlete->load([
+            'athleteProfile', 
+            'videos', 
+            'athleteUpdates' => function ($query) {
+                $query->latest(); // Ordena as atualizações pela mais recente
+            }
+        ]);
 
         $athlete->load('athleteProfile', 'videos');
         return view('pages.athlete.show', compact('athlete'));
